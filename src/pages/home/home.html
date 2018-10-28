@@ -1,14 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="Search for a place"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-content>
+
+  <ion-list [hidden]="autocompleteItems.length == 0">
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+  Total Distance: <span id="total"></span>
+  <div #map id='map'></div>
 </ion-content>
+
+<ion-footer>
+  <button class="geolocation-btn" ion-button full (click)="tryGeolocation()"> Try Geolocation </button>
+</ion-footer>
