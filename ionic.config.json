@@ -1,0 +1,7 @@
+{
+  "name": "DirectionMao",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
